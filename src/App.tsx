@@ -11,7 +11,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="*" element={<HomePage />} />
-        <Route path="user/:id" element={<UserPage />} />
+        <Route path="user/:username" element={<UserPage />} />
       </Routes>
     </>
   );
