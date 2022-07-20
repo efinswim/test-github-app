@@ -21,12 +21,12 @@ export const githubApi = createApi({
         url: `users/${username}/repos`,
       }),
     }),
-    getUser: builder.query<UserRoot[], string>({
-      query: (username: string) => ({
+    getUser: builder.query<UserRoot, string>({
+      query: (username?: string) => ({
         url: `users/${username}`,
       }),
     }),
   }),
 });
 
-export const { useGetUsersByNameQuery, useLazyGetUserReposQuery, useGetUserReposQuery, useGetUserQuery } = githubApi;
+export const { useGetUsersByNameQuery, useGetUserReposQuery, useGetUserQuery } = githubApi;

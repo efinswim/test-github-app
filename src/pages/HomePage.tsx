@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLazyGetUserReposQuery, useGetUsersByNameQuery } from '../store/github/github.api';
+import { useGetUsersByNameQuery } from '../store/github/github.api';
 import { useDebounce } from '../hooks/debounce';
 import { Link } from 'react-router-dom';
 
@@ -10,12 +10,12 @@ function HomePage() {
   const debounced = useDebounce(search);
 
   const { isLoading, isError, data } = useGetUsersByNameQuery(debounced, {
-    skip: debounced.length < 2,
+    skip: debounced.length < 1,
     refetchOnFocus: true,
   });
 
   React.useEffect(() => {
-    setDropdown(debounced.length > 2 && data?.length! > 0);
+    setDropdown(debounced.length > 1 && data?.length! > 0);
   }, [debounced, data]);
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
