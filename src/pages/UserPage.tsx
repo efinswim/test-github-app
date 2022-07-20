@@ -44,38 +44,54 @@ function UserPage() {
 
   return (
     <div className="">
-      <div className="flex justify-center items-center mt-10">
-        <div className="h-[200px] w-[200px]">
-          <img src={user?.avatar_url} alt="" />
-        </div>
-        <div className="ml-10">
-          <ul>
-            <li>User name: {user?.name}</li>
-            <li>Email: {user?.email}</li>
-            <li>Location: {user?.location}</li>
-            <li>Join date: {user?.created_at}</li>
-            <li>Followers: {user?.followers}</li>
-            <li>Following: {user?.following}</li>
-          </ul>
-        </div>
-      </div>
-      <div className="flex justify-center items-center mt-10">
-        <div className="w-[860px]">
-          <p className="text-center">{user?.bio}</p>
-        </div>
-      </div>
-      <div className="flex justify-center mt-10 ">
-        <div className="relative w-[560px]">
-          <input
-            type="text"
-            className="border px-4 py-2 w-full h-[42px] mb-2"
-            placeholder={`Search for ${user?.login} repository`}
-            value={search}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
+      {isError && (
+        <p className="text-center text-red-600 text-xl">
+          It looks like something went wrong, please try again later.
+        </p>
+      )}
+      {isLoading && <p className="text-center">Loading</p>}
+      {user && (
+        <>
+          <div className="flex justify-center items-center mt-10">
+            <div className="h-[200px] w-[200px]">
+              <img src={user?.avatar_url} alt="" />
+            </div>
+            <div className="ml-10">
+              <ul>
+                <li>User name: {user?.name}</li>
+                <li>Email: {user?.email}</li>
+                <li>Location: {user?.location}</li>
+                <li>Join date: {user?.created_at}</li>
+                <li>Followers: {user?.followers}</li>
+                <li>Following: {user?.following}</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex justify-center items-center mt-10">
+            <div className="w-[860px]">
+              <p className="text-center">{user?.bio}</p>
+            </div>
+          </div>
+          <div className="flex justify-center mt-10 ">
+            <div className="relative w-[560px]">
+              <input
+                type="text"
+                className="border px-4 py-2 w-full h-[42px] mb-2"
+                placeholder={`Search for ${user?.login} repository`}
+                value={search}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </>
+      )}
       <div className="flex items-center flex-col-reverse divide-y divide-y-reverse mt-10">
+        {isErrorRepos && (
+          <p className="text-center text-red-600 text-xl">
+            It looks like something went wrong, please try again later.
+          </p>
+        )}
+        {isLoadingRepos && <p className="text-center">Loading</p>}
         {userReposMarkUp}
       </div>
     </div>

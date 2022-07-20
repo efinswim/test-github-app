@@ -4,8 +4,8 @@ import { useDebounce } from '../hooks/debounce';
 import { Link } from 'react-router-dom';
 
 function HomePage() {
-  const [search, setSearch] = React.useState('');
-  const [dropdown, setDropdown] = React.useState(false);
+  const [search, setSearch] = React.useState<string>('');
+  const [dropdown, setDropdown] = React.useState<boolean>(false);
 
   const debounced = useDebounce(search);
 
